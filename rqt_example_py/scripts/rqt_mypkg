@@ -2,9 +2,9 @@
 
 import sys
 
-from rqt_mypkg.my_module import MyPlugin
+from rqt_mypkg.mypkg import MyPlugin
 from rqt_gui.main import Main
 
-plugin = 'rqt_mypkg'
+plugin = 'mypkg'
 main = Main(filename=plugin)
 sys.exit(main.main(standalone=plugin))
