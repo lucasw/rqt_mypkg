@@ -1,4 +1,5 @@
 import os
+import rospkg
 import rospy
 
 from qt_gui.plugin import Plugin
@@ -11,6 +12,7 @@ class MyPlugin(Plugin):
         super(MyPlugin, self).__init__(context)
         # Give QObjects reasonable names
         self.setObjectName('MyPlugin')
+        rp = rospkg.RosPack()
 
         # Process standalone plugin command-line arguments
         from argparse import ArgumentParser
@@ -28,7 +30,7 @@ class MyPlugin(Plugin):
         self._widget = QWidget()
         # Get path to UI file which is a sibling of this file
         # in this example the .ui and .py file are in the same folder
-        ui_file = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'MyPlugin.ui')
+        ui_file = os.path.join(rp.get_path('rqt_mypkg'), 'resource', 'MyPlugin.ui')
         # Extend the widget with all attributes and children from UI file
         loadUi(ui_file, self._widget)
         # Give QObjects reasonable names
