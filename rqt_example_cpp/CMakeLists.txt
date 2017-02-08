@@ -13,9 +13,13 @@ find_package(catkin REQUIRED COMPONENTS
 )
 
 ## System dependencies are found with CMake's conventions
-find_package(Qt4 COMPONENTS QtCore QtGUi REQUIRED)
 
-include(${QT_USE_FILE})
+if("${qt_gui_cpp_USE_QT_MAJOR_VERSION} " STREQUAL "5 ")
+  find_package(Qt5Widgets REQUIRED)
+else()
+  find_package(Qt4 COMPONENTS QtCore QtGui REQUIRED)
+  include(${QT_USE_FILE})
+endif()
 
 ## Uncomment this if the package has a setup.py. This macro ensures
 ## modules and global scripts declared therein get installed
@@ -124,8 +128,13 @@ set(rqt_example_cpp_UIS
   src/rqt_example_cpp/my_plugin.ui
 )
 
-qt4_wrap_cpp(rqt_example_cpp_MOCS ${rqt_example_cpp_HDRS})
-qt4_wrap_ui(rqt_example_cpp_UIS_H ${rqt_example_cpp_UIS})
+if("${qt_gui_cpp_USE_QT_MAJOR_VERSION} " STREQUAL "5 ")
+  qt5_wrap_cpp(rqt_example_cpp_MOCS ${rqt_example_cpp_HDRS})
+  qt5_wrap_ui(rqt_example_cpp_UIS_H ${rqt_example_cpp_UIS})
+else()
+  qt4_wrap_cpp(rqt_example_cpp_MOCS ${rqt_example_cpp_HDRS})
+  qt4_wrap_ui(rqt_example_cpp_UIS_H ${rqt_example_cpp_UIS})
+endif()
 
 ###########
 ## Build ##
@@ -156,9 +165,13 @@ add_library(${PROJECT_NAME}
 ## Specify libraries to link a library or executable target against
 target_link_libraries(${PROJECT_NAME}
   ${catkin_LIBRARIES}
-  ${QT_QTCORE_LIBRARY}
-  ${QT_QTGUI_LIBRARY}
 )
+
+if("${qt_gui_cpp_USE_QT_MAJOR_VERSION} " STREQUAL "5 ")
+  target_link_libraries(${PROJECT_NAME} Qt5::Widgets)
+else()
+  target_link_libraries(${PROJECT_NAME} ${QT_QTCORE_LIBRARY} ${QT_QTGUI_LIBRARY})
+endif()
 
 #############
 ## Install ##
