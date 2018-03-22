@@ -5,6 +5,8 @@ import rospy
 from qt_gui.plugin import Plugin
 from python_qt_binding import loadUi
 from python_qt_binding.QtWidgets import QWidget
+from std_msgs.msg import Empty
+
 
 class MyPlugin(Plugin):
 
@@ -44,6 +46,12 @@ class MyPlugin(Plugin):
             self._widget.setWindowTitle(self._widget.windowTitle() + (' (%d)' % context.serial_number()))
         # Add widget to the user interface
         context.add_widget(self._widget)
+
+        self.sub = rospy.Subscriber("crash", Empty, self.crash_callback, queue_size=1)
+
+    def crash_callback(self, msg):
+        # this doesn't cause any problems, it throws and keeps working
+        raise Exception("crashing intentionally")
 
     def shutdown_plugin(self):
         # TODO unregister all publishers here
