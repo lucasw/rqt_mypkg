@@ -59,4 +59,4 @@ void triggerConfiguration()
 }*/
 
 }  // namespace rqt_example_cpp
-PLUGINLIB_DECLARE_CLASS(rqt_example_cpp, MyPlugin, rqt_example_cpp::MyPlugin, rqt_gui_cpp::Plugin)
+PLUGINLIB_EXPORT_CLASS(rqt_example_cpp::MyPlugin, rqt_gui_cpp::Plugin)
