@@ -26,6 +26,9 @@ jobs:
       - name: Install ROS basic packages
         run: |
             sudo apt-get install -y libqwt-qt5-dev qtbase5-dev
+            sudo apt-get install -y python-pip
+            sudo pip install catkin-lint
+            # sudo apt-get install -y catkin-lint
             sudo apt-get install -y python-catkin-pkg
             sudo apt-get install -y python-catkin-tools
             sudo apt-get install -y python-rosdep
@@ -59,6 +62,10 @@ jobs:
           source /opt/ros/$ROS_DISTRO/setup.bash
           catkin build --no-status
           source devel/setup.bash
+      - name: catkin lint
+        run: |
+          cd catkin_ws
+          catkin_lint -W2 src
       - name: run tests
         run: |
           cd catkin_ws
