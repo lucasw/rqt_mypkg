@@ -116,24 +116,24 @@ catkin_package(
 )
 
 
-set (rqt_example_cpp_SRCS
-  src/rqt_example_cpp/my_plugin.cpp
+set (${PROJECT_NAME}_SRCS
+  src/${PROJECT_NAME}/my_plugin.cpp
 )
 
-set(rqt_example_cpp_HDRS
-  include/rqt_example_cpp/my_plugin.h
+set(${PROJECT_NAME}_HDRS
+  include/${PROJECT_NAME}/my_plugin.h
 )
 
-set(rqt_example_cpp_UIS
-  src/rqt_example_cpp/my_plugin.ui
+set(${PROJECT_NAME}_UIS
+  src/${PROJECT_NAME}/my_plugin.ui
 )
 
 if("${qt_gui_cpp_USE_QT_MAJOR_VERSION} " STREQUAL "5 ")
-  qt5_wrap_cpp(rqt_example_cpp_MOCS ${rqt_example_cpp_HDRS})
-  qt5_wrap_ui(rqt_example_cpp_UIS_H ${rqt_example_cpp_UIS})
+  qt5_wrap_cpp(${PROJECT_NAME}_MOCS ${${PROJECT_NAME}_HDRS})
+  qt5_wrap_ui(${PROJECT_NAME}_UIS_H ${${PROJECT_NAME}_UIS})
 else()
-  qt4_wrap_cpp(rqt_example_cpp_MOCS ${rqt_example_cpp_HDRS})
-  qt4_wrap_ui(rqt_example_cpp_UIS_H ${rqt_example_cpp_UIS})
+  qt4_wrap_cpp(${PROJECT_NAME}_MOCS ${${PROJECT_NAME}_HDRS})
+  qt4_wrap_ui(${PROJECT_NAME}_UIS_H ${${PROJECT_NAME}_UIS})
 endif()
 
 ###########

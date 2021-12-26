@@ -2,7 +2,7 @@
 <package>
   <name>rqt_example_cpp</name>
   <version>0.0.0</version>
-  <description>The rqt_example_cpp package</description>
+  <description>Demonstrate a custom rqt plugin in C++</description>
 
   <!-- One maintainer tag required, multiple allowed, one person per tag --> 
   <!-- Example:  -->
