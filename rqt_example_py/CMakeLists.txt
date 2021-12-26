@@ -5,9 +5,13 @@ project(rqt_example_py)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
+  roslint
   rospy
   rqt_gui_py
 )
+
+set(ROSLINT_PYTHON_OPTS "--ignore=''" "1>&2")
+roslint_python()
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
