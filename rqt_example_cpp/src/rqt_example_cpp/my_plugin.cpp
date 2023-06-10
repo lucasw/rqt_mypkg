@@ -3,7 +3,7 @@
 */
 
 #include "rqt_example_cpp/my_plugin.h"
-#include <pluginlib/class_list_macros.h>
+#include <pluginlib/class_list_macros.hpp>
 #include <QStringList>
 
 namespace rqt_example_cpp
